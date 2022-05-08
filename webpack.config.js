@@ -6,7 +6,7 @@ module.exports = {
     mode: 'development',
     entry: {
         index: './src/index.js',
-        another: './src/another-module.js',
+        another: './src/another-module.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -14,6 +14,10 @@ module.exports = {
         clean: true,
         publicPath: '/'
     },
+    //With the optimization.splitChunks configuration option in place,
+    // we should now see the duplicate dependency removed from our index.bundle.js
+    // and another.bundle.js. The plugin should notice that we've separated lodash
+    // out to a separate chunk and remove the dead weight from our main bundle.
     optimization: {
         splitChunks: {
             chunks: 'all'
