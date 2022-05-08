@@ -1,16 +1,13 @@
-// import() calls use promises internally. If you use import() with older browsers (e.g., IE 11),
-// remember to shim Promise using a polyfill such as es6-promise or promise-polyfill.
+import _ from 'lodash';
+import Print from './print';
 
-async function getComponent() {
+function component() {
     const element = document.createElement('div');
 
-    const { default: _ } = await import('lodash');
-
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.onclick = Print.bind(null, 'Hello webpack!');
 
     return element;
 }
 
-getComponent().then((component) => {
-    document.body.appendChild(component);
-})
+document.body.appendChild(component());
