@@ -1,28 +1,17 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    // If there are any duplicated modules (lodash) between entry chunks they will be included in both bundles.
+    // It isn't as flexible and can't be used to dynamically split code with the core application logic.
     entry: {
         index: './src/index.js',
-        print: './src/print.js'
+        another: './src/another-module.js'
     },
-    devtool: 'inline-source-map',
-    devServer: {
-        static: './dist',
-    },
-    plugins: [
-        new HtmlWebpackPlugin({
-            title: 'Development'
-        })
-    ],
     output: {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
         publicPath: '/'
     },
-    optimization: {
-        runtimeChunk: 'single'
-    }
 }
