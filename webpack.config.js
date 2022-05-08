@@ -1,12 +1,15 @@
 const path = require('path');
 
-// The SplitChunksPlugin allows us to extract common dependencies into an existing entry chunk or an entirely new chunk.
+// Code splitting is one of the most compelling features of webpack.
+// This feature allows you to split your code into various bundles which can
+// then be loaded on demand or in parallel. It can be used to achieve smaller
+// bundles and control resource load prioritization which, if used correctly,
+// can have a major impact on load time.
 
 module.exports = {
     mode: 'development',
     entry: {
         index: './src/index.js',
-        another: './src/another-module.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -14,13 +17,4 @@ module.exports = {
         clean: true,
         publicPath: '/'
     },
-    //With the optimization.splitChunks configuration option in place,
-    // we should now see the duplicate dependency removed from our index.bundle.js
-    // and another.bundle.js. The plugin should notice that we've separated lodash
-    // out to a separate chunk and remove the dead weight from our main bundle.
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    }
 }
