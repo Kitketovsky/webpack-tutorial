@@ -4,7 +4,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     mode: 'development',
     entry: {
-        index: './src/index.js',
+        // The same as it was in optimization, but it gives you control which
+        // dependencies to put in vendor
+        index: {
+            import: './src/index.js',
+            dependOn: 'vendor'
+        },
+        vendor: ['react', 'react-dom']
     },
     plugins: [
         new HtmlWebpackPlugin({
@@ -17,18 +23,6 @@ module.exports = {
         clean: true,
         publicPath: '/'
     },
-    // The same as before, but manually controller
-    optimization: {
-        splitChunks: {
-            cacheGroups: {
-                commons: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendor',
-                    chunks: 'initial'
-                }
-            }
-        }
-    }
 }
 
 // Main bundle - 10 KiB
