@@ -17,9 +17,16 @@ module.exports = {
         clean: true,
         publicPath: '/'
     },
+    // The same as before, but manually controller
     optimization: {
         splitChunks: {
-            chunks: 'all'
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: 'vendor',
+                    chunks: 'initial'
+                }
+            }
         }
     }
 }
