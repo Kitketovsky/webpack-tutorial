@@ -1,5 +1,7 @@
 import _ from 'lodash';
 import Print from './print';
+import React from 'react';
+import { Container } from 'react-dom';
 
 function component() {
     const element = document.createElement('div');

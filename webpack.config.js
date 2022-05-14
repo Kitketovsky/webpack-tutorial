@@ -17,6 +17,12 @@ module.exports = {
         clean: true,
         publicPath: '/'
     },
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 }
 
-// Main bundle - 555 KiB
+// Main bundle - 10 KiB
+// Vendors - 1.65 MiB
