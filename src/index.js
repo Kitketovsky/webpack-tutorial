@@ -1,12 +1,15 @@
-// import() calls use promises internally. If you use import() with older browsers (e.g., IE 11),
-// remember to shim Promise using a polyfill such as es6-promise or promise-polyfill.
-
 async function getComponent() {
     const element = document.createElement('div');
 
-    const { default: _ } = await import('lodash');
+    const btn = document.createElement('button');
 
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    btn.textContent = 'Click to lazy'
+
+    btn.onclick = () => import('./lazy').then((lazy) => {
+        btn.textContent = lazy.default;
+    })
+
+    element.appendChild(btn);
 
     return element;
 }
